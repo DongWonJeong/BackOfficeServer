@@ -17,6 +17,5 @@ public enum Role {
     public static class Authority {
         public static final String MANAGER = "ROLE_MANAGER";
         public static final String STAFF = "ROLE_STAFF";
-
     }
 }

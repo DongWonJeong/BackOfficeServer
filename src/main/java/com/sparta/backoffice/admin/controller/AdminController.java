@@ -26,8 +26,8 @@ public class AdminController {
     public ResponseEntity<SignUpResponseDto> signup(@RequestBody @Valid SignUpRequestDto requestDto) {
         SignUpResponseDto signUpResponseDto = adminService.signup(requestDto);
 
-        // 가입 성공 했을 때 Signup successful 반환
+        // 가입 성공
         return ResponseEntity.status(HttpStatus.OK).body(signUpResponseDto);
-
     }
+
 }

@@ -25,7 +25,7 @@ public class AdminService {
     public SignUpResponseDto signup(SignUpRequestDto requestDto) {
         String email = requestDto.getEmail();
         String password = passwordEncoder.encode(requestDto.getPassword());
-        String department = requestDto.getDepartment();
+        String department = String.valueOf(requestDto.getDepartment());
 
         // email 중복확인
         Optional<Admin> checkEmail = adminRepository.findByEmail(email);
@@ -41,7 +41,7 @@ public class AdminService {
             role = Role.STAFF;
         }
 
-        // 등록
+        // 저장
         Admin admin = new Admin(email, password, department, role);
         adminRepository.save(admin);
         return new SignUpResponseDto(admin);

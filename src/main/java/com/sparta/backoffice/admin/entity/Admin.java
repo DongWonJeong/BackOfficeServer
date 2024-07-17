@@ -14,30 +14,30 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name="admin_Id")
     private Long id;
 
     //이메일
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false)
     private String email;
 
     //비밀번호
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     //부서
-    @Column(nullable = false)
-    private String department;
+    @Column(name = "department", nullable = false)
+    private Department department;
 
     //권한
-    @Column(nullable = false)
+    @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
     public Admin(String email, String password, String department, Role role) {
         this.email = email;
         this.password = password;
-        this.department = department;
+        this.department = Department.valueOf(department);
         this.role = role;
     }
 }
