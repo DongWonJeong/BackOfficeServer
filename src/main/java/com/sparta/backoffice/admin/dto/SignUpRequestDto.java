@@ -1,6 +1,5 @@
 package com.sparta.backoffice.admin.dto;
 
-import com.sparta.backoffice.admin.entity.Admin;
 import com.sparta.backoffice.admin.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -22,8 +21,5 @@ public class SignUpRequestDto {
 
     @NotBlank
     private String department;
-
-    @NotBlank
-    private Role role;
 
 }

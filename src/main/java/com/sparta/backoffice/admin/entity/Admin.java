@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "admin")
 @Getter
+@Table(name = "admin")
 @NoArgsConstructor
 public class Admin {
 
@@ -27,7 +27,6 @@ public class Admin {
 
     //부서
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
     private String department;
 
     //권한

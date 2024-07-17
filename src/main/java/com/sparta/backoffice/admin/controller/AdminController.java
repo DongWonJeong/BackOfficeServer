@@ -1,6 +1,7 @@
 package com.sparta.backoffice.admin.controller;
 
 import com.sparta.backoffice.admin.dto.SignUpRequestDto;
+import com.sparta.backoffice.admin.dto.SignUpResponseDto;
 import com.sparta.backoffice.admin.service.AdminService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,11 +21,13 @@ public class AdminController {
         this.adminService = adminService;
     }
 
+    // 관리자 가입 기능
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody @Valid SignUpRequestDto requestDto) {
-        adminService.signup(requestDto);
+    public ResponseEntity<SignUpResponseDto> signup(@RequestBody @Valid SignUpRequestDto requestDto) {
+        SignUpResponseDto signUpResponseDto = adminService.signup(requestDto);
 
-        //가입 성공 했을 때 Signup successful 반환
-        return ResponseEntity.status(HttpStatus.OK).body("Signup successful");
+        // 가입 성공 했을 때 Signup successful 반환
+        return ResponseEntity.status(HttpStatus.OK).body(signUpResponseDto);
+
     }
 }

@@ -1,6 +1,7 @@
 package com.sparta.backoffice.admin.service;
 
 import com.sparta.backoffice.admin.dto.SignUpRequestDto;
+import com.sparta.backoffice.admin.dto.SignUpResponseDto;
 import com.sparta.backoffice.admin.entity.Admin;
 import com.sparta.backoffice.admin.entity.Role;
 import com.sparta.backoffice.admin.repository.AdminRepository;
@@ -21,7 +22,7 @@ public class AdminService {
     }
 
     //관리자 가입 기능
-    public void signup(SignUpRequestDto requestDto) {
+    public SignUpResponseDto signup(SignUpRequestDto requestDto) {
         String email = requestDto.getEmail();
         String password = passwordEncoder.encode(requestDto.getPassword());
         String department = requestDto.getDepartment();
@@ -43,5 +44,6 @@ public class AdminService {
         // 등록
         Admin admin = new Admin(email, password, department, role);
         adminRepository.save(admin);
+        return new SignUpResponseDto(admin);
     }
 }
