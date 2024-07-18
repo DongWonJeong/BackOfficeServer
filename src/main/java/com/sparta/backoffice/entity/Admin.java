@@ -1,4 +1,4 @@
-package com.sparta.backoffice.admin.entity;
+package com.sparta.backoffice.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
@@ -27,7 +27,7 @@ public class Admin {
 
     //부서
     @Column(name = "department", nullable = false)
-    private Department department;
+    private String department;
 
     //권한
     @Column(name = "role", nullable = false)
@@ -37,7 +37,7 @@ public class Admin {
     public Admin(String email, String password, String department, Role role) {
         this.email = email;
         this.password = password;
-        this.department = Department.valueOf(department);
+        this.department = department;
         this.role = role;
     }
 }

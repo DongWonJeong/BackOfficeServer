@@ -1,15 +1,14 @@
-package com.sparta.backoffice.admin.dto;
+package com.sparta.backoffice.dto;
 
-import com.sparta.backoffice.admin.entity.Admin;
-import com.sparta.backoffice.admin.entity.Department;
-import com.sparta.backoffice.admin.entity.Role;
+import com.sparta.backoffice.entity.Admin;
+import com.sparta.backoffice.entity.Role;
 import lombok.Getter;
 
 @Getter
 public class SignUpResponseDto {
 
     private final String email;
-    private final Department department;
+    private final String department;
     private final Role role;
 
     public SignUpResponseDto(Admin admin) {

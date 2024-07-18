@@ -1,9 +1,10 @@
-package com.sparta.backoffice.admin.entity;
+package com.sparta.backoffice.entity;
 
 import lombok.Getter;
 
 @Getter
 public enum Role {
+
     MANAGER(Authority.MANAGER),
     STAFF(Authority.STAFF);
 

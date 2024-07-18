@@ -1,6 +1,6 @@
-package com.sparta.backoffice.admin.repository;
+package com.sparta.backoffice.repository;
 
-import com.sparta.backoffice.admin.entity.Admin;
+import com.sparta.backoffice.entity.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

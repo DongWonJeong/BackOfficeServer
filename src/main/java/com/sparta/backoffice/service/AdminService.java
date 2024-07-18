@@ -1,31 +1,33 @@
-package com.sparta.backoffice.admin.service;
+package com.sparta.backoffice.service;
 
-import com.sparta.backoffice.admin.dto.SignUpRequestDto;
-import com.sparta.backoffice.admin.dto.SignUpResponseDto;
-import com.sparta.backoffice.admin.entity.Admin;
-import com.sparta.backoffice.admin.entity.Role;
-import com.sparta.backoffice.admin.repository.AdminRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.sparta.backoffice.dto.SignUpRequestDto;
+import com.sparta.backoffice.dto.SignUpResponseDto;
+import com.sparta.backoffice.entity.Admin;
+import com.sparta.backoffice.entity.Role;
+import com.sparta.backoffice.repository.AdminRepository;
+import lombok.extern.slf4j.Slf4j;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class AdminService {
 
     private final AdminRepository adminRepository;
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
-    public AdminService(AdminRepository adminRepository, PasswordEncoder passwordEncoder){
+    public AdminService(AdminRepository adminRepository){
         this.adminRepository = adminRepository;
-        this.passwordEncoder = passwordEncoder;
+//        this.passwordEncoder = passwordEncoder;
     }
 
     //관리자 가입 기능
     public SignUpResponseDto signup(SignUpRequestDto requestDto) {
         String email = requestDto.getEmail();
-        String password = passwordEncoder.encode(requestDto.getPassword());
-        String department = String.valueOf(requestDto.getDepartment());
+        String password = requestDto.getPassword();
+        String department = requestDto.getDepartment();
 
         // email 중복확인
         Optional<Admin> checkEmail = adminRepository.findByEmail(email);
@@ -44,6 +46,7 @@ public class AdminService {
         // 저장
         Admin admin = new Admin(email, password, department, role);
         adminRepository.save(admin);
+
         return new SignUpResponseDto(admin);
     }
 }
