@@ -26,11 +26,9 @@ public class AdminController {
     // 관리자 가입 기능
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponseDto> signup(@RequestBody @Valid SignUpRequestDto requestDto) {
-        log.info("컨트롤러");
         SignUpResponseDto signUpResponseDto = adminService.signup(requestDto);
 
         // 가입 성공
         return ResponseEntity.status(HttpStatus.OK).body(signUpResponseDto);
     }
-
 }

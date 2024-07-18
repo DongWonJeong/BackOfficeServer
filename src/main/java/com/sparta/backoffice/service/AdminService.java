@@ -6,7 +6,7 @@ import com.sparta.backoffice.entity.Admin;
 import com.sparta.backoffice.entity.Role;
 import com.sparta.backoffice.repository.AdminRepository;
 import lombok.extern.slf4j.Slf4j;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,17 +16,17 @@ import java.util.Optional;
 public class AdminService {
 
     private final AdminRepository adminRepository;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public AdminService(AdminRepository adminRepository){
+    public AdminService(AdminRepository adminRepository, PasswordEncoder passwordEncoder){
         this.adminRepository = adminRepository;
-//        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //관리자 가입 기능
     public SignUpResponseDto signup(SignUpRequestDto requestDto) {
         String email = requestDto.getEmail();
-        String password = requestDto.getPassword();
+        String password = passwordEncoder.encode(requestDto.getPassword());
         String department = requestDto.getDepartment();
 
         // email 중복확인
@@ -43,7 +43,7 @@ public class AdminService {
             role = Role.STAFF;
         }
 
-        // 저장
+        // 등록
         Admin admin = new Admin(email, password, department, role);
         adminRepository.save(admin);
 
